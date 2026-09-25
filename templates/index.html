@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caesar Cipher — AVIP 2026</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">CS_1 · Caesar Cipher · AVIP 2026</div>
+    <h1>Caesar Cipher</h1>
+    <p class="sub">Classic letter-shift substitution. Numbers, spaces and punctuation pass through unchanged. Case is preserved.</p>
+  </header>
+
+  <div class="panel">
+    <label for="input">Text</label>
+    <textarea id="input" placeholder="Type or paste text here...">Hello World, this is AVIP 2026! Task 1: 123 test.</textarea>
+
+    <div class="row">
+      <div class="field">
+        <label>Mode</label>
+        <div class="mode" role="group" aria-label="Mode">
+          <button id="modeEnc" aria-pressed="true" onclick="setMode('encrypt')">Encrypt</button>
+          <button id="modeDec" aria-pressed="false" onclick="setMode('decrypt')">Decrypt</button>
+        </div>
+      </div>
+      <div class="field key-field">
+        <label for="shift">Shift (key)</label>
+        <input id="shift" type="number" value="3" step="1">
+      </div>
+      <button class="run" onclick="run()">Run →</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="out-head">
+      <label>Output</label>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="copy-msg" id="copyMsg">Copied</span>
+        <button class="ghost" onclick="copyOutput()">Copy</button>
+      </div>
+    </div>
+    <pre id="output"></pre>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <footer>
+    Each letter shifts forward (encrypt) or backward (decrypt) by the key, wrapping A↔Z and a↔z.
+    Shift values outside 0–25 are normalized automatically (<code>shift % 26</code>).
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
